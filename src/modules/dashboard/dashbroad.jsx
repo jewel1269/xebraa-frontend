@@ -18,14 +18,14 @@ export default function Dashboard() {
   ]);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!accessToken) return;
-    axios
-      .get("/api/notes", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => setNotes(res.data));
-  }, [accessToken]);
+  // useEffect(() => {
+  //   if (!accessToken) return;
+  //   axios
+  //     .get("http://localhost:5000/api/notes", {
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     })
+  //     .then((res) => setNotes(res.data));
+  // }, [accessToken]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">

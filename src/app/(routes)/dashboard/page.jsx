@@ -1,4 +1,4 @@
-import Dashboard from '@/modules/dashboard/dashbroad';
+import Dashboard from '../../../modules/dashboard/dashbroad.jsx';
 import React from 'react';
 
 const DashboardPage = () => {

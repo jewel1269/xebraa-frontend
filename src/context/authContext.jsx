@@ -1,8 +1,7 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
-import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie"; 
 
 export const AuthContext = createContext();
 
@@ -10,15 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("/api/auth/me", { withCredentials: true })
-      .then((res) => {
-        setAccessToken(res.data.accessToken);
-        setUser(jwtDecode(res.data.accessToken));
-      })
-      .catch(() => {});
-  }, []);
 
   const login = async (email, password) => {
     try {
@@ -27,18 +17,44 @@ export const AuthProvider = ({ children }) => {
         { email, password },
         { withCredentials: true }
       );
+      console.log("Login Response:", res.data);
       setAccessToken(res.data.accessToken);
-      setUser(jwtDecode(res.data.accessToken));
-      console.log(user, accessToken);
     } catch (error) {
       console.error("Login failed", error);
     }
   };
 
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/auth/user", {
+          withCredentials: true, 
+        });
+
+        setAccessToken(res.data.accessToken);
+        setUser(res.data.user);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    getUser();
+  }, []);
+
+  // ✅ Logout function
   const logout = async () => {
-    await axios.post("/api/auth/logout", {}, { withCredentials: true });
-    setUser(null);
-    setAccessToken(null);
+    try {
+      await axios.post(
+        "http://localhost:5000/api/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      setUser(null);
+      setAccessToken(null);
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   return (

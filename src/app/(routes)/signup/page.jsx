@@ -1,4 +1,4 @@
-import Signup from '@/modules/signup/signup';
+import Signup from '../../../modules/signup/signup.jsx';
 import React from 'react';
 
 const SignupPage = () => {

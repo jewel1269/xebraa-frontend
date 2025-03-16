@@ -1,4 +1,5 @@
-const { default: Login } = require("@/modules/login/login");
+import Login from "../../../modules/login/login.jsx"
+
 
 const LoginPage = () => {
   return <Login />;
