@@ -26,7 +26,7 @@ export default function Dashboard() {
   
     const fetchNotes = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/note/${user._id}`, {
+        const res = await axios.get(`https://backend-three-omega-65.vercel.app/api/note/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setNotes(res.data);

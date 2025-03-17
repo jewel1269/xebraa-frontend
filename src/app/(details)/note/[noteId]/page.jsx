@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import { AuthContext } from "../../../../context/authContext";
 import axios from "axios";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://backend-three-omega-65.vercel.app");
 
 export default function NoteEditor() {
   const { noteId } = useParams();
@@ -22,7 +22,7 @@ export default function NoteEditor() {
     const fetchNote = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/note/single/${noteId}`,
+          `https://backend-three-omega-65.vercel.app/api/note/single/${noteId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

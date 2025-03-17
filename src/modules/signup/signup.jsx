@@ -13,7 +13,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     console.log(name, email, password);
-    await axios.post("http://localhost:5000/api/auth/create-user", { name, email, password });
+    await axios.post("https://backend-three-omega-65.vercel.app/api/auth/create-user", { name, email, password });
     toast.success(`${name} Registration Successfull`)
     router.push("/login");
   };

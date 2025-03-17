@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("https://backend-three-omega-65.vercel.app/api/auth/login", {
         email,
         password,
       });
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
 const updateNote = async (noteId, title, content) => {
   try {
-    const res = await axios.put(`http://localhost:5000/api/note/update/${noteId}`, {
+    const res = await axios.put(`https://backend-three-omega-65.vercel.app/api/note/update/${noteId}`, {
       title,
       content,
     });
@@ -48,7 +48,7 @@ const updateNote = async (noteId, title, content) => {
 
   const createNote = async (title, content, user) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/note/create", {
+      const res = await axios.post("https://backend-three-omega-65.vercel.app/api/note/create", {
         title,
         content,
         user,
@@ -71,7 +71,7 @@ const updateNote = async (noteId, title, content) => {
       if (!token) return;
 
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/user", {
+        const res = await axios.get("https://backend-three-omega-65.vercel.app/api/auth/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -94,7 +94,7 @@ const updateNote = async (noteId, title, content) => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        "https://backend-three-omega-65.vercel.app/api/auth/logout",
         {},
         {
           headers: {
